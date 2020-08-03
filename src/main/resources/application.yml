@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: test
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: NON_NULL    
+  http:
+    encoding:
+      charset: UTF-8
+  rabbitmq:
+    addresses: 192.168.1.25:5672
+    username: guest
+    password: guest
+    virtual-host: /testVirtualHost
+    connection-timeout: 5000
+    
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+    
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+        concurrency: 5
+        max-concurrency: 10 
+  
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.xhl.leads: DEBUG
+    
